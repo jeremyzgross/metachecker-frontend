@@ -1,0 +1,30 @@
+/* Navbar.css */
+
+nav {
+  background-color: #240e87; /* Set navbar background color */
+  padding: 10px 20px; /* Add padding to navbar */
+}
+
+ul {
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+  display: flex; /* Use flexbox for layout */
+}
+
+li {
+  margin-right: 15px; /* Add margin between navbar items */
+}
+
+button {
+  background-color: transparent; /* Set button background color to transparent */
+  color: #fff; /* Set button text color */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Set cursor to pointer on hover */
+  font-size: 16px; /* Set font size */
+  font-weight: bold; /* Set font weight to bold */
+}
+
+button:hover {
+  color: rgba(255, 255, 255, 0.7); /* Change text color on hover */
+}

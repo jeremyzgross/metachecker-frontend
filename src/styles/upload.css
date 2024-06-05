@@ -1,0 +1,44 @@
+/* upload.css */
+
+.upload-container {
+  padding: 20px;
+  background-color: #240e87; /* Dark purple background color */
+  color: #fff; /* White text color */
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.upload-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.upload-container form {
+  margin-bottom: 20px;
+}
+
+.upload-container input[type="file"],
+.upload-container select,
+.upload-container input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.upload-container input[type="submit"] {
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-container input[type="submit"]:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.upload-container p {
+  margin-bottom: 20px;
+}

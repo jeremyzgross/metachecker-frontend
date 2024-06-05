@@ -1,0 +1,75 @@
+/* WelcomePage.css */
+
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+.welcome-message {
+  flex: 1; /* Allow the message to grow or shrink as needed */
+  max-width: 50%; /* Limit the maximum width of the message */
+  padding: 20px; /* Add padding to the message */
+}
+
+.form-container {
+  width: 80%; /* Adjust the width of the form container */
+  max-width: 600px; /* Set a maximum width to maintain readability */
+  padding: 40px; /* Increase padding for more spacing */
+  background-color: #240e87;
+  border-radius: 10px;
+  color: #fff;
+  transform: translateY(50px);
+  transition: opacity 0.5s, transform 0.5s, background-color 0.5s; /* Add transition for background color */
+
+  display: flex; /* Add flex display */
+  flex-direction: column; /* Arrange items in a column */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+.form-container.register {
+  background-color: #e05118; /* Orange background color for register form */
+}
+
+.form-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+.form-container p {
+  margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+  width: 100%; /* Make inputs and buttons fill container width */
+  padding: 10px; /* Increase padding for larger inputs */
+  margin-bottom: 15px; /* Add spacing between inputs */
+  border: none;
+  border-radius: 5px;
+  font-size: 16px; /* Increase font size for better readability */
+}
+
+.form-container button {
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add transition for button hover effect */
+}
+
+.form-container button:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Change background color on hover */
+}
+
+.fade-in {
+  opacity: 1;
+}
