@@ -20,7 +20,7 @@ export const login = createAsyncThunk(
   'login/userLogin',
   async (credentials: { username: string; password: string }, thunkAPI) => {
     try {
-      const response = await fetch('http://localhost:3000/api/login/', {
+      const response = await fetch('https://metachecker-server.onrender.com/api/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

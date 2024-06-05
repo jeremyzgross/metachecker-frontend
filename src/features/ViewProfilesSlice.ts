@@ -58,7 +58,7 @@ export const viewProfile = createAsyncThunk(
   'viewProfile/fetchProfile',
   async ({ user_id, profile_id }: { user_id: number; profile_id: number }, thunkAPI) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/user/${user_id}/profile/${profile_id}`, {
+      const response = await fetch(`https://metachecker-server.onrender.com/api/user/${user_id}/profile/${profile_id}`, {
         method: 'GET',
       });
       if (!response.ok) {
@@ -77,7 +77,7 @@ export const deleteProfile = createAsyncThunk(
   'viewProfile/deleteProfile',
   async ({ user_id, profile_id }: { user_id: number; profile_id: number }, thunkAPI) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/user/${user_id}/profile/${profile_id}`, {
+      const response = await fetch(`https://metachecker-server.onrender.com/api/user/${user_id}/profile/${profile_id}`, {
         method: 'DELETE',
       });
       if (!response.ok) {

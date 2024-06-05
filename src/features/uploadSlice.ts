@@ -87,7 +87,7 @@ export const uploadFile = createAsyncThunk(
       formData.append('filename', fileInfo.video);
       formData.append('user_id', fileInfo.user_id.toString());
       formData.append('profile_id', fileInfo.profile_id.toString());
-      const response = await fetch(`http://localhost:3000/api/upload`, {
+      const response = await fetch(`https://metachecker-server.onrender.com/api/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -110,7 +110,7 @@ export const getProfiles = createAsyncThunk(
   'profiles/getProfiles',
   async (profileInfo: { user_id: number }, thunkAPI) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/user/${profileInfo.user_id}`, {
+      const response = await fetch(`https://metachecker-server.onrender.com/api/user/${profileInfo.user_id}`, {
         method: 'GET',
       });
       if (!response.ok) {

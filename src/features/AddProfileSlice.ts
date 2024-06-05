@@ -58,7 +58,7 @@ export const addProfile = createAsyncThunk(
   'addProfile/addVideoProfileFormData',
   async (VideoFormDataToSend: VideoProfileFormData, thunkAPI) => {
     try {
-      const response = await fetch('http://localhost:3000/api/addvideoprofile', {
+      const response = await fetch('https://metachecker-server.onrender.com/api/addvideoprofile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

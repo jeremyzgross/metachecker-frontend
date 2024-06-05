@@ -25,7 +25,7 @@ export const register = createAsyncThunk(
   'register/userRegister',
   async (credentials: { first_name: string; last_name: string; username: string; password: string; email: string }, thunkAPI) => {
     try {
-      const response = await fetch('http://localhost:3000/api/register/', {
+      const response = await fetch('https://metachecker-server.onrender.com/api/register/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
