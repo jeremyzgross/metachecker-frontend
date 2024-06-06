@@ -140,24 +140,28 @@ const uploadSlice = createSlice({
         state.error = null;
       })
       .addCase(uploadFile.fulfilled, (state, action: PayloadAction<{ QCResults: QCResults, resJSON: any }>) => {
-  state.isLoading = false;
-  state.qcResults = action.payload.QCResults;
-  state.probedMetadata = {
-    codec_name: action.payload.resJSON.allVideoData.video.codec_name,
-    profile: action.payload.resJSON.allVideoData.video.profile,
-    width: action.payload.resJSON.allVideoData.video.width,
-    height: action.payload.resJSON.allVideoData.video.height,
-    field_order: action.payload.resJSON.allVideoData.video.field_order,
-    r_frame_rate: action.payload.resJSON.allVideoData.video.r_frame_rate,
-    duration: action.payload.resJSON.allVideoData.video.duration,
-    bitrate: action.payload.resJSON.allVideoData.video.bit_rate,
-    audio_codec_name: action.payload.resJSON.allVideoData.audio.codec_name,
-    sample_rate: action.payload.resJSON.allVideoData.audio.sample_rate,
-    channels: action.payload.resJSON.allVideoData.audio.channels,
-    channel_layout: action.payload.resJSON.allVideoData.audio.channel_layout,
-    audio_bitrate: action.payload.resJSON.allVideoData.audio.bit_rate,
-  };
-})
+        state.isLoading = false
+        state.qcResults = action.payload.QCResults
+        //add a state that changes the profile metadata
+        //state.profile = action.payload"videoProfileInterface"
+        state.probedMetadata = {
+          codec_name: action.payload.resJSON.allVideoData.video.codec_name,
+          profile: action.payload.resJSON.allVideoData.video.profile,
+          width: action.payload.resJSON.allVideoData.video.width,
+          height: action.payload.resJSON.allVideoData.video.height,
+          field_order: action.payload.resJSON.allVideoData.video.field_order,
+          r_frame_rate: action.payload.resJSON.allVideoData.video.r_frame_rate,
+          duration: action.payload.resJSON.allVideoData.video.duration,
+          bitrate: action.payload.resJSON.allVideoData.video.bit_rate,
+          audio_codec_name:
+            action.payload.resJSON.allVideoData.audio.codec_name,
+          sample_rate: action.payload.resJSON.allVideoData.audio.sample_rate,
+          channels: action.payload.resJSON.allVideoData.audio.channels,
+          channel_layout:
+            action.payload.resJSON.allVideoData.audio.channel_layout,
+          audio_bitrate: action.payload.resJSON.allVideoData.audio.bit_rate,
+        }
+      })
 
       .addCase(uploadFile.rejected, (state, action) => {
         state.isLoading = false;

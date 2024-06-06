@@ -1,92 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import { RootState, AppDispatch } from '../App/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProfiles } from './uploadSlice';
-import { viewProfile, ViewProfile } from './ViewProfilesSlice'; 
-import { deleteProfile } from './ViewProfilesSlice';
-import { useNavigate } from 'react-router-dom';
-import { clearViewProfile } from './ViewProfilesSlice';
-import Navbar from '../Components/Navbar';
+import React, { useState, useEffect } from 'react'
+import { RootState, AppDispatch } from '../App/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfiles } from './uploadSlice'
+import { viewProfile, ViewProfile } from './ViewProfilesSlice'
+import { deleteProfile } from './ViewProfilesSlice'
+import { useNavigate } from 'react-router-dom'
+import { clearViewProfile } from './ViewProfilesSlice'
+import Navbar from '../Components/Navbar'
 const ViewProfiles: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
-  const { user_id } = useSelector((state: RootState) => state.login);
-  const { profiles, error } = useSelector((state: RootState) => state.profiles);
-  const { data, status } = useSelector((state: RootState) => state.viewProfile);
+  const { user_id } = useSelector((state: RootState) => state.login)
+  const { profiles, error } = useSelector((state: RootState) => state.profiles)
+  const { data, status } = useSelector((state: RootState) => state.viewProfile)
 
-  const [selectedProfile, setSelectedProfile] = useState<number | null>(null);
-  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
-  const [deleteMessage, setDeleteMessage] = useState<string | null>(null);
+  const [selectedProfile, setSelectedProfile] = useState<number | null>(null)
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false)
+  const [deleteMessage, setDeleteMessage] = useState<string | null>(null)
 
-useEffect(() => {
-  if (user_id !== null) {
-    dispatch(getProfiles({ user_id }));
-  }
-  // clear the profiles space
-  return () => {
-    dispatch(clearViewProfile());
-  };
-}, [dispatch, user_id]);
+  useEffect(() => {
+    if (user_id !== null) {
+      dispatch(getProfiles({ user_id }))
+    }
+    // clear the profiles space
+    return () => {
+      dispatch(clearViewProfile())
+    }
+  }, [dispatch, user_id])
 
   const handleProfileChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedProfileId = Number(event.target.value);
-    setSelectedProfile(selectedProfileId);
+    const selectedProfileId = Number(event.target.value)
+    setSelectedProfile(selectedProfileId)
     if (user_id !== null && selectedProfileId !== null) {
-      dispatch(viewProfile({ user_id, profile_id: selectedProfileId }));
+      dispatch(viewProfile({ user_id, profile_id: selectedProfileId }))
     }
-  };
+  }
 
   const handleDeleteConfirmation = () => {
-    setShowConfirmation(true);
-  };
+    setShowConfirmation(true)
+  }
 
   const handleDeleteCancel = () => {
-    setShowConfirmation(false);
-  };
+    setShowConfirmation(false)
+  }
 
   const handleProfileDelete = () => {
-    setShowConfirmation(false);
+    setShowConfirmation(false)
     if (user_id !== null && selectedProfile !== null) {
-      dispatch(deleteProfile({ user_id, profile_id: selectedProfile })).then((resultAction) => {
-        if (deleteProfile.fulfilled.match(resultAction)) {
-          setDeleteMessage('Profile deleted');
-          setTimeout(() => {
-            setDeleteMessage(null);
-            navigate('/dashboard');
-          }, 2000); // Display the message for 2 seconds before navigating back
+      dispatch(deleteProfile({ user_id, profile_id: selectedProfile })).then(
+        (resultAction) => {
+          if (deleteProfile.fulfilled.match(resultAction)) {
+            setDeleteMessage('Profile deleted')
+            setTimeout(() => {
+              setDeleteMessage(null)
+              navigate('/dashboard')
+            }, 2000) // Display the message for 2 seconds before navigating back
+          }
         }
-      });
+      )
     }
-  };
+  }
 
   // Function to retrieve 'readable' name from metadata name
-  const getReadableName = (key: keyof ViewProfile): string => {
-    const propertyNamesMap: { [key in keyof ViewProfile]: string } = {
-      profile_name: 'Profile Name',
-      codec_name: 'Video Codec',
-      profile: 'Video Profile',
-      width: 'Width',
-      height: 'Height',
-      field_order: 'Field Order',
-      r_frame_rate: 'Frame Rate',
-      duration: 'Video Duration',
-      bitrate_min: 'Minimum Video Bitrate',
-      bitrate_max: 'Maximum Video Bitrate',
-      audio_codec_name: 'Audio Codec',
-      sample_rate: 'Audio Sample Rate',
-      channels: 'Audio Channels',
-      channel_layout: 'Audio Channel Layout',
-      audio_bitrate_min: 'Minimum Audio Bitrate',
-      audio_bitrate_max: 'Maximum Audio Bitrate',
-      bitrate: 'Bitrate',
-      audio_bitrate: 'Audio Bitrate',
-    };
-    return propertyNamesMap[key] || key.toString();
-  };
+  const getFieldInfo = (
+    key: keyof ViewProfile
+  ): { label: string; unit: string } => {
+    const propertyNamesMap: {
+      [key in keyof ViewProfile]: { label: string; unit: string }
+    } = {
+      profile_name: { label: 'Profile Name', unit: '' },
+      codec_name: { label: 'Video Codec', unit: '' },
+      profile: { label: 'Video Profile', unit: '' },
+      width: { label: 'Width', unit: 'px' },
+      height: { label: 'Height', unit: 'px' },
+      field_order: { label: 'Field Order', unit: '' },
+      r_frame_rate: { label: 'Frame Rate', unit: 'fps' },
+      duration: { label: 'Video Duration', unit: '' },
+      bitrate_min: { label: 'Minimum Video Bitrate', unit: '' },
+      bitrate_max: { label: 'Maximum Video Bitrate', unit: '' },
+      audio_codec_name: { label: 'Audio Codec', unit: '' },
+      sample_rate: { label: 'Audio Sample Rate', unit: '' },
+      channels: { label: 'Audio Channels', unit: '' },
+      channel_layout: { label: 'Audio Channel Layout', unit: '' },
+      audio_bitrate_min: { label: 'Minimum Audio Bitrate', unit: '' },
+      audio_bitrate_max: { label: 'Maximum Audio Bitrate', unit: '' },
+      bitrate: { label: 'Bitrate', unit: '' },
+      audio_bitrate: { label: 'Audio Bitrate', unit: '' },
+    }
+    return propertyNamesMap[key] || { label: key.toString(), unit: '' }
+  }
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <h1>View Profiles</h1>
       <select onChange={handleProfileChange} value={selectedProfile ?? ''}>
         <option value="" disabled>
@@ -111,27 +117,49 @@ useEffect(() => {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(data).map(([key, value]) => (
-                <tr key={key}>
-                  <td>{getReadableName(key as keyof ViewProfile)}</td>
-                  <td>{value}</td>
-                </tr>
-              ))}
+              {Object.entries(data).map(([key, value]) => {
+                const fieldInfo = getFieldInfo(key as keyof ViewProfile)
+                return (
+                  <tr key={key}>
+                    <td>{fieldInfo.label}</td>
+                    <td>{value}</td>
+                    <td>{fieldInfo.unit}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
-           {deleteMessage && <p>{deleteMessage}</p>}
-          <button style={{backgroundColor: "red"}} className='delete-button' onClick={handleDeleteConfirmation}>Delete Profile</button>
+          {deleteMessage && <p>{deleteMessage}</p>}
+          <button
+            style={{ backgroundColor: 'red' }}
+            className="delete-button"
+            onClick={handleDeleteConfirmation}
+          >
+            Delete Profile
+          </button>
         </div>
       )}
       {showConfirmation && (
         <div>
           <p>Are you sure you want to delete this profile?</p>
-          <button style={{backgroundColor: "red"}} className='delete-button' onClick={handleProfileDelete}>Yes</button>
-          <button style={{backgroundColor: "red"}} className='delete-button' onClick={handleDeleteCancel}>No</button>
+          <button
+            style={{ backgroundColor: 'red' }}
+            className="delete-button"
+            onClick={handleProfileDelete}
+          >
+            Yes
+          </button>
+          <button
+            style={{ backgroundColor: 'red' }}
+            className="delete-button"
+            onClick={handleDeleteCancel}
+          >
+            No
+          </button>
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ViewProfiles;
+export default ViewProfiles
