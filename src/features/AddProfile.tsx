@@ -335,7 +335,22 @@ const AddProfile: React.FC = () => {
           Kbps
         </label>
         <br />
-        <input type="submit" value="Add Profile" />
+        <input
+          type="submit"
+          value="Add Profile"
+          style={{
+            backgroundColor: '#32bc2b',
+            color: '#fff',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '16px',
+            padding: '10px',
+            width: 'auto',
+            marginBottom: '15px',
+          }}
+        />
       </form>
       {successMessage && <p>{successMessage}</p>}
       {status === 'loading' && <p>Loading...</p>}

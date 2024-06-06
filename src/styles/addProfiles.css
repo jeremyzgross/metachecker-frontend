@@ -1,3 +1,7 @@
+html {
+  font-family: 'roboto';
+}
+
 .upload-container {
   padding: 20px;
   background-color: #240e87; /* Dark purple background color */
@@ -35,11 +39,11 @@
   margin-bottom: 20px;
 }
 
-.upload-container input[type="file"],
+.upload-container input[type='file'],
 .upload-container select,
-.upload-container input[type="submit"],
-.upload-container input[type="text"],
-.upload-container input[type="number"] {
+.upload-container input[type='submit'],
+.upload-container input[type='text'],
+.upload-container input[type='number'] {
   width: 50%; /* Adjusted width for inputs and selects */
   padding: 10px;
   margin-bottom: 15px;
@@ -50,14 +54,14 @@
   color: #fff;
 }
 
-.upload-container input[type="submit"] {
+.upload-container input[type='submit'] {
   background-color: transparent;
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.upload-container input[type="submit"]:hover {
+.upload-container input[type='submit']:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 

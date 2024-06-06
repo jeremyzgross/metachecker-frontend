@@ -1,5 +1,6 @@
-/* WelcomePage.css */
-
+html {
+  font-family: 'roboto';
+}
 .welcome-container {
   display: flex;
   justify-content: center;

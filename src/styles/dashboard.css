@@ -1,13 +1,11 @@
-/* dashboard.css */
-
+html {
+  font-family: 'roboto';
+}
 .dashboard-container {
-  display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #240e87; /* Blue background color */
-  color: #fff; /* White text color */
-  min-height: 100vh; /* Ensure it extends the full height of the page */
+  background-color: #240e86;
+  color: #ffffff;
 }
 
 .dashboard-container h1 {

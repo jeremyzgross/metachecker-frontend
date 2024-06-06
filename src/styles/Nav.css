@@ -1,4 +1,7 @@
 /* Navbar.css */
+html {
+  font-family: 'roboto';
+}
 
 nav {
   background-color: #240e87; /* Set navbar background color */

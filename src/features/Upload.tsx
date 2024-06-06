@@ -71,10 +71,23 @@ const Upload: React.FC = () => {
             ))}
           </select>
         )}
+        <br />
         <input
           type="submit"
           value="Check Metadata"
           disabled={!profiles || profiles.length === 0 || uploadLoading}
+          style={{
+            backgroundColor: '#32bc2b',
+            color: '#fff',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '16px',
+            padding: '10px',
+            width: 'auto', // Set width to auto
+            marginBottom: '15px',
+          }}
         />
       </form>
       {profilesLoading && <p>Loading profiles...</p>}
