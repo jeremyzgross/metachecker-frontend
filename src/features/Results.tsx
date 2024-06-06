@@ -1,14 +1,18 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../App/store';
-import { QCResults, propertyNamesMap, ProbedMetadata } from './uploadSlice';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../App/store'
+import { QCResults, propertyNamesMap, ProbedMetadata } from './uploadSlice'
 
 const Results: React.FC = () => {
   const qcResults = useSelector((state: RootState) => state.upload.qcResults)
   const probedMetadata = useSelector(
     (state: RootState) => state.upload.probedMetadata
   )
-  //ADD USESELECT FOR PROFILE USED 'videoProfileInterface'
+  const isLoading = useSelector((state: RootState) => state.upload.isLoading)
+
+  if (isLoading) {
+    return <p>Loading results...</p>
+  }
 
   if (!qcResults || !probedMetadata) {
     return null
@@ -41,7 +45,7 @@ const Results: React.FC = () => {
           <tr>
             <th>Metadata Type</th>
             <th>QC Status</th>
-            <th> Uploaded File Metadata</th>
+            <th>Uploaded File Metadata</th>
           </tr>
         </thead>
         <tbody>
@@ -111,6 +115,6 @@ const Results: React.FC = () => {
       </table>
     </div>
   )
-};
+}
 
-export default Results;
+export default Results
