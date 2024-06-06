@@ -14,6 +14,12 @@
   padding: 20px; /* Add padding to the message */
 }
 
+.welcome-image {
+  width: 10%;
+  display: inline-flex;
+  margin-top: 20px;
+}
+
 .form-container {
   width: 80%; /* Adjust the width of the form container */
   max-width: 600px; /* Set a maximum width to maintain readability */

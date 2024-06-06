@@ -2,7 +2,7 @@
 
 nav {
   background-color: #240e87; /* Set navbar background color */
-  padding: 10px 20px; /* Add padding to navbar */
+  padding: 5px 20px; /* Add padding to navbar */
 }
 
 ul {
@@ -13,7 +13,16 @@ ul {
 }
 
 li {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
   margin-right: 15px; /* Add margin between navbar items */
+}
+
+.welcome-image {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+  margin-top: 5px; /* Adjust the margin-top to move the image vertically */
 }
 
 button {
