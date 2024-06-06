@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../App/store'
 import { QCResults, propertyNamesMap, ProbedMetadata } from './uploadSlice'
+import '../styles/results.css'
 
 const Results: React.FC = () => {
   const qcResults = useSelector((state: RootState) => state.upload.qcResults)
@@ -27,7 +28,7 @@ const Results: React.FC = () => {
   const formatFrameRate = (frameRate: string): string => {
     const [numerator] = frameRate.split('/')
     const fps = Number(numerator) / 1000
-    return fps.toString() //
+    return fps.toString()
   }
 
   // Helper function to render checkmark or X
@@ -38,9 +39,9 @@ const Results: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="results-container">
       <h2>Results:</h2>
-      <table>
+      <table className="results-table">
         <thead>
           <tr>
             <th>Metadata Type</th>
@@ -56,7 +57,6 @@ const Results: React.FC = () => {
               <td>
                 {key in probedMetadata && (
                   <>
-                    {/* Hiding the original values from the probed */}
                     {key !== 'bitrate' &&
                       key !== 'audio_bitrate' &&
                       key !== 'width' &&
@@ -69,7 +69,6 @@ const Results: React.FC = () => {
                           {probedMetadata[key as keyof ProbedMetadata]}
                         </span>
                       )}
-                    {/* Convert bitrate to kilobits if the key is 'bitrate' */}
                     {(key === 'bitrate' || key === 'audio_bitrate') && (
                       <span
                         style={value ? { color: 'green' } : { color: 'red' }}
@@ -80,7 +79,6 @@ const Results: React.FC = () => {
                         kbps
                       </span>
                     )}
-                    {/* Add 'px' suffix for width and height */}
                     {(key === 'width' || key === 'height') && (
                       <span
                         style={value ? { color: 'green' } : { color: 'red' }}
@@ -88,7 +86,6 @@ const Results: React.FC = () => {
                         {probedMetadata[key as keyof ProbedMetadata]} px
                       </span>
                     )}
-                    {/* Add 'kHz' suffix for sample rate */}
                     {key === 'sample_rate' && (
                       <span
                         style={value ? { color: 'green' } : { color: 'red' }}
@@ -96,7 +93,6 @@ const Results: React.FC = () => {
                         {probedMetadata[key as keyof ProbedMetadata]} kHz
                       </span>
                     )}
-                    {/* Format frame rate */}
                     {key === 'r_frame_rate' && (
                       <span
                         style={value ? { color: 'green' } : { color: 'red' }}

@@ -1,0 +1,43 @@
+/* results.css */
+
+.results-container {
+  padding: 20px;
+  background-color: #333;
+  color: #fff; /* White text color */
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.results-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.results-table th,
+.results-table td {
+  padding: 10px;
+  text-align: left;
+  color: #fff;
+}
+
+.results-table th {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.results-table td {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.results-table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.results-table tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.1);
+}

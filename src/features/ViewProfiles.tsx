@@ -1,3 +1,4 @@
+import '../styles/viewProfiles.css'
 import React, { useState, useEffect } from 'react'
 import { RootState, AppDispatch } from '../App/store'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,6 +8,8 @@ import { deleteProfile } from './ViewProfilesSlice'
 import { useNavigate } from 'react-router-dom'
 import { clearViewProfile } from './ViewProfilesSlice'
 import Navbar from '../Components/Navbar'
+import '../styles/viewProfiles.css'
+
 const ViewProfiles: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
@@ -22,7 +25,6 @@ const ViewProfiles: React.FC = () => {
     if (user_id !== null) {
       dispatch(getProfiles({ user_id }))
     }
-    // clear the profiles space
     return () => {
       dispatch(clearViewProfile())
     }
@@ -61,7 +63,6 @@ const ViewProfiles: React.FC = () => {
     }
   }
 
-  // Function to retrieve 'readable' name from metadata name
   const getFieldInfo = (
     key: keyof ViewProfile
   ): { label: string; unit: string } => {
@@ -93,71 +94,63 @@ const ViewProfiles: React.FC = () => {
   return (
     <>
       <Navbar />
-      <h1>View Profiles</h1>
-      <select onChange={handleProfileChange} value={selectedProfile ?? ''}>
-        <option value="" disabled>
-          Select Profile
-        </option>
-        {profiles.map((profile) => (
-          <option key={profile.id} value={profile.id}>
-            {profile.profile_name}
+      <div className="view-profiles-container">
+        <h1>View Profiles</h1>
+        <select onChange={handleProfileChange} value={selectedProfile ?? ''}>
+          <option value="" disabled>
+            Select Profile
           </option>
-        ))}
-      </select>
-      {status === 'loading' && <div>Loading...</div>}
-      {status === 'failed' && <div>Error: {error}</div>}
-      {status === 'succeeded' && (
-        <div>
-          <h2>Results:</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Metadata Type</th>
-                <th>Metadata</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(data).map(([key, value]) => {
-                const fieldInfo = getFieldInfo(key as keyof ViewProfile)
-                return (
-                  <tr key={key}>
-                    <td>{fieldInfo.label}</td>
-                    <td>{value}</td>
-                    <td>{fieldInfo.unit}</td>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-          {deleteMessage && <p>{deleteMessage}</p>}
-          <button
-            style={{ backgroundColor: 'red' }}
-            className="delete-button"
-            onClick={handleDeleteConfirmation}
-          >
-            Delete Profile
-          </button>
-        </div>
-      )}
-      {showConfirmation && (
-        <div>
-          <p>Are you sure you want to delete this profile?</p>
-          <button
-            style={{ backgroundColor: 'red' }}
-            className="delete-button"
-            onClick={handleProfileDelete}
-          >
-            Yes
-          </button>
-          <button
-            style={{ backgroundColor: 'red' }}
-            className="delete-button"
-            onClick={handleDeleteCancel}
-          >
-            No
-          </button>
-        </div>
-      )}
+          {profiles.map((profile) => (
+            <option key={profile.id} value={profile.id}>
+              {profile.profile_name}
+            </option>
+          ))}
+        </select>
+        {status === 'loading' && <div>Loading...</div>}
+        {status === 'failed' && <div>Error: {error}</div>}
+        {status === 'succeeded' && (
+          <div>
+            <h2>Selected Profile:</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Metadata Type</th>
+                  <th>Metadata</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(data).map(([key, value]) => {
+                  const fieldInfo = getFieldInfo(key as keyof ViewProfile)
+                  return (
+                    <tr key={key}>
+                      <td>{fieldInfo.label}</td>
+                      <td>{`${value} ${fieldInfo.unit}`}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+            {deleteMessage && <p>{deleteMessage}</p>}
+            <button
+              className="delete-button"
+              onClick={handleDeleteConfirmation}
+            >
+              Delete Profile
+            </button>
+          </div>
+        )}
+        {showConfirmation && (
+          <div className="confirmation-dialog">
+            <p>Are you sure you want to delete this profile?</p>
+            <button className="confirm-button" onClick={handleProfileDelete}>
+              Yes
+            </button>
+            <button className="cancel-button" onClick={handleDeleteCancel}>
+              No
+            </button>
+          </div>
+        )}
+      </div>
     </>
   )
 }

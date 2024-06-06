@@ -1,0 +1,93 @@
+/* styles/viewProfiles.css */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.view-profiles-container {
+  padding: 20px;
+  background-color: #240e87; /* Dark purple background color */
+  color: #fff; /* White text color */
+  border-radius: 10px;
+  margin-top: 20px;
+  min-height: 100vh; /* Ensure the container extends to full page height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.view-profiles-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.view-profiles-container select {
+  width: 50%; /* Adjusted width for select */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+}
+
+.view-profiles-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Grey background color */
+}
+
+.view-profiles-container th,
+.view-profiles-container td {
+  padding: 10px;
+  text-align: left;
+  color: #fff; /* White text color */
+}
+
+.view-profiles-container td {
+  padding-right: 80px; /* Adjust the right padding to increase spacing */
+}
+
+.view-profiles-container .delete-button {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-profiles-container .delete-button:hover {
+  background-color: darkred;
+}
+
+.view-profiles-container .confirmation-dialog {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 10px;
+}
+
+.view-profiles-container .confirm-button,
+.view-profiles-container .cancel-button {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s;
+}
+
+.view-profiles-container .confirm-button:hover,
+.view-profiles-container .cancel-button:hover {
+  background-color: darkred;
+}

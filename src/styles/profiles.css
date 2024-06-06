@@ -1,0 +1,48 @@
+/* profiles.css */
+
+.profiles-container {
+  padding: 20px;
+  background-color: #007bff; /* Blue background color */
+  color: #fff; /* White text color */
+  border-radius: 10px;
+  min-height: 100vh; /* Ensure the container extends to full page height */
+}
+
+.profiles-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.profiles-container form {
+  margin-bottom: 20px;
+}
+
+.profiles-container input[type="file"],
+.profiles-container select,
+.profiles-container input[type="submit"],
+.profiles-container input[type="text"],
+.profiles-container input[type="number"] {
+  width: 50%; /* Adjusted width for inputs and selects */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+}
+
+.profiles-container input[type="submit"] {
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profiles-container input[type="submit"]:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profiles-container p {
+  margin-bottom: 20px;
+}
