@@ -76,7 +76,7 @@ const ViewProfiles: React.FC = () => {
       height: { label: 'Height', unit: 'px' },
       field_order: { label: 'Field Order', unit: '' },
       r_frame_rate: { label: 'Frame Rate', unit: 'fps' },
-      duration: { label: 'Video Duration', unit: '' },
+      duration: { label: 'Video Duration', unit: 'seconds' },
       bitrate_min: { label: 'Minimum Video Bitrate', unit: '' },
       bitrate_max: { label: 'Maximum Video Bitrate', unit: '' },
       audio_codec_name: { label: 'Audio Codec', unit: '' },
@@ -85,8 +85,8 @@ const ViewProfiles: React.FC = () => {
       channel_layout: { label: 'Audio Channel Layout', unit: '' },
       audio_bitrate_min: { label: 'Minimum Audio Bitrate', unit: '' },
       audio_bitrate_max: { label: 'Maximum Audio Bitrate', unit: '' },
-      bitrate: { label: 'Bitrate', unit: '' },
-      audio_bitrate: { label: 'Audio Bitrate', unit: '' },
+      bitrate: { label: 'Bitrate', unit: 'kbps' },
+      audio_bitrate: { label: 'Audio Bitrate', unit: 'kbps' },
     }
     return propertyNamesMap[key] || { label: key.toString(), unit: '' }
   }
@@ -121,10 +121,31 @@ const ViewProfiles: React.FC = () => {
               <tbody>
                 {Object.entries(data).map(([key, value]) => {
                   const fieldInfo = getFieldInfo(key as keyof ViewProfile)
+                  let displayValue = `${value} ${fieldInfo.unit}`
+
+                  if (
+                    typeof value === 'string' &&
+                    value.startsWith('[') &&
+                    value.endsWith(']')
+                  ) {
+                    try {
+                      const arrayValue = JSON.parse(value)
+                      if (Array.isArray(arrayValue)) {
+                        displayValue = `${
+                          arrayValue[0] !== null ? arrayValue[0] : ''
+                        } - ${arrayValue[1] !== null ? arrayValue[1] : ''} ${
+                          fieldInfo.unit
+                        }`
+                      }
+                    } catch (e) {
+                      console.error('Failed to parse array string:', e)
+                    }
+                  }
+
                   return (
                     <tr key={key}>
                       <td>{fieldInfo.label}</td>
-                      <td>{`${value} ${fieldInfo.unit}`}</td>
+                      <td>{displayValue}</td>
                     </tr>
                   )
                 })}

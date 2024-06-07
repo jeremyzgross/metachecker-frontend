@@ -1,7 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../App/store'
-import { QCResults, propertyNamesMap, ProbedMetadata } from './uploadSlice'
+import {
+  QCResults,
+  propertyNamesMap,
+  ProbedMetadata,
+  videoProfileInterface,
+} from './uploadSlice'
 import '../styles/results.css'
 
 const Results: React.FC = () => {
@@ -9,26 +14,17 @@ const Results: React.FC = () => {
   const probedMetadata = useSelector(
     (state: RootState) => state.upload.probedMetadata
   )
+  const videoProfileInterface = useSelector(
+    (state: RootState) => state.upload.videoProfileInterface
+  )
   const isLoading = useSelector((state: RootState) => state.upload.isLoading)
 
   if (isLoading) {
     return <p>Loading results...</p>
   }
 
-  if (!qcResults || !probedMetadata) {
+  if (!qcResults || !probedMetadata || !videoProfileInterface) {
     return null
-  }
-
-  // Helper function to convert bitrate from bits to kilobits
-  const convertBitrateToKilobits = (bitrate: number): number => {
-    return bitrate / 1000
-  }
-
-  // Helper function to format frame rate
-  const formatFrameRate = (frameRate: string): string => {
-    const [numerator] = frameRate.split('/')
-    const fps = Number(numerator) / 1000
-    return fps.toString()
   }
 
   // Helper function to render checkmark or X
@@ -36,6 +32,9 @@ const Results: React.FC = () => {
     const style = { color: value ? 'green' : 'red' }
     const symbol = value ? '✓ PASS' : '✗ FAIL'
     return <span style={style}>{symbol}</span>
+  }
+  const convertBitrateToKilobits = (bitrate: number): number => {
+    return bitrate / 1000
   }
 
   return (
@@ -47,6 +46,7 @@ const Results: React.FC = () => {
             <th>Metadata Type</th>
             <th>QC Status</th>
             <th>Uploaded File Metadata</th>
+            <th>Profile Metadata</th>
           </tr>
         </thead>
         <tbody>
@@ -97,9 +97,89 @@ const Results: React.FC = () => {
                       <span
                         style={value ? { color: 'green' } : { color: 'red' }}
                       >
-                        {formatFrameRate(
-                          probedMetadata[key as keyof ProbedMetadata].toString()
-                        )}
+                        {probedMetadata[key as keyof ProbedMetadata]} fps
+                      </span>
+                    )}
+                  </>
+                )}
+              </td>
+              <td>
+                {key in videoProfileInterface && (
+                  <>
+                    {key !== 'bitrate' &&
+                      key !== 'audio_bitrate' &&
+                      key !== 'width' &&
+                      key !== 'height' &&
+                      key !== 'sample_rate' &&
+                      key !== 'r_frame_rate' && (
+                        <span>
+                          {
+                            videoProfileInterface[
+                              key as keyof videoProfileInterface
+                            ]
+                          }
+                        </span>
+                      )}
+                    {key === 'bitrate' &&
+                      typeof videoProfileInterface[
+                        key as keyof videoProfileInterface
+                      ] === 'string' && (
+                        <span>
+                          {String(
+                            videoProfileInterface[
+                              key as keyof videoProfileInterface
+                            ]
+                          )
+                            .replace('[', '')
+                            .replace(']', '')
+                            .replace(',', ' - ')}{' '}
+                          kbps
+                        </span>
+                      )}
+                    {key === 'audio_bitrate' &&
+                      typeof videoProfileInterface[
+                        key as keyof videoProfileInterface
+                      ] === 'string' && (
+                        <span>
+                          {String(
+                            videoProfileInterface[
+                              key as keyof videoProfileInterface
+                            ]
+                          )
+                            .replace('[', '')
+                            .replace(']', '')
+                            .replace(',', ' - ')}{' '}
+                          kbps
+                        </span>
+                      )}
+                    {(key === 'width' || key === 'height') && (
+                      <span>
+                        {
+                          videoProfileInterface[
+                            key as keyof videoProfileInterface
+                          ]
+                        }{' '}
+                        px
+                      </span>
+                    )}
+                    {key === 'sample_rate' && (
+                      <span>
+                        {
+                          videoProfileInterface[
+                            key as keyof videoProfileInterface
+                          ]
+                        }{' '}
+                        kHz
+                      </span>
+                    )}
+                    {key === 'r_frame_rate' && (
+                      <span>
+                        {
+                          videoProfileInterface[
+                            key as keyof videoProfileInterface
+                          ]
+                        }{' '}
+                        fps
                       </span>
                     )}
                   </>
