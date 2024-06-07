@@ -14,7 +14,7 @@ const AddProfile: React.FC = () => {
     user_id: null,
     profile_name: '',
     codec_name: 'h264',
-    profile: 'main',
+    // profile: 'main',
     width: 1920,
     height: 1080,
     field_order: 'progressive',
@@ -63,7 +63,7 @@ const AddProfile: React.FC = () => {
           user_id: user_id,
           profile_name: '',
           codec_name: 'h264',
-          profile: 'main',
+          // profile: 'main',
           width: 1920,
           height: 1080,
           field_order: 'progressive',
@@ -180,7 +180,7 @@ const AddProfile: React.FC = () => {
           </select>
         </label>
         <br />
-        <label>
+        {/* <label>
           Profile:
           <input
             type="text"
@@ -188,8 +188,8 @@ const AddProfile: React.FC = () => {
             value={formData.profile ?? ''}
             onChange={handleInputChange}
           />
-        </label>
-        <br />
+        </label> */}
+        {/* <br /> */}
         <label>
           Width:
           <input

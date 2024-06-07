@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
 export interface QCResults {
   codec_name: boolean
-  profile: boolean
+  // profile: boolean
   width: boolean
   height: boolean
   field_order: boolean
@@ -18,7 +18,7 @@ export interface QCResults {
 
 export interface ProbedMetadata {
   codec_name: string
-  profile: string
+  // profile: string
   width: number
   height: number
   field_order: string
@@ -34,7 +34,7 @@ export interface ProbedMetadata {
 
 export interface videoProfileInterface {
   codec_name: string
-  profile: string
+  // profile: string
   width: number
   height: number
   field_order: string
@@ -79,7 +79,7 @@ const initialProfileState: ProfileState = {
 //change interface to "readable names" for user from "metadata"
 export const propertyNamesMap: { [key in keyof QCResults]: string } = {
   codec_name: 'Video Codec',
-  profile: 'Video Profile',
+  // profile: 'Video Profile',
   width: 'Width',
   height: 'Height',
   field_order: 'Field Order',
@@ -176,7 +176,7 @@ const uploadSlice = createSlice({
           //state.profile = action.payload"videoProfileInterface"
           state.probedMetadata = {
             codec_name: action.payload.resJSON.allVideoData.video.codec_name,
-            profile: action.payload.resJSON.allVideoData.video.profile,
+            // profile: action.payload.resJSON.allVideoData.video.profile,
             width: action.payload.resJSON.allVideoData.video.width,
             height: action.payload.resJSON.allVideoData.video.height,
             field_order: action.payload.resJSON.allVideoData.video.field_order,

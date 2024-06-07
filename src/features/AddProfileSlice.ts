@@ -4,7 +4,7 @@ export interface VideoProfileFormData {
   user_id: number| null
   profile_name: string,
   codec_name: string | null;
-  profile: string | null;
+  // profile: string | null;
   width: number | null;
   height: number | null;
   field_order: string | null;
@@ -33,7 +33,7 @@ const initialState: VideoProfileState = {
     user_id: 0,
     profile_name: '',
     codec_name: null,
-    profile: null,
+    // profile: null,
     width: null,
     height: null,
     field_order: null,
@@ -85,7 +85,7 @@ export const addProfileSlice = createSlice({
         user_id: 0,
          profile_name: '',
         codec_name: null,
-        profile: null,
+        // profile: null,
         width: null,
         height: null,
         field_order: null,
