@@ -10,10 +10,10 @@ body {
 
 .view-profiles-container {
   padding: 20px;
-  background-color: #240e87; /* Dark purple background color */
+  background-color: #240e87;
   color: #fff; /* White text color */
-  border-radius: 10px;
-  margin-top: 20px;
+  /* border-radius: 10px; */
+  /* margin-top: 20px; */
   min-height: 100vh; /* Ensure the container extends to full page height */
   display: flex;
   flex-direction: column;

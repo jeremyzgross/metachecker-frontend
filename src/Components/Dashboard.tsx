@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
     <div>
       <Navbar />
       <div className="dashboard-container">
-        <h1>Welcome to the Dashboard, {first_name}!</h1>
+        <h1 className='header'>Welcome to the Dashboard, {first_name}!</h1>
         <Upload />
       </div>
     </div>

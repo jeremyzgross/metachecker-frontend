@@ -356,6 +356,7 @@ const AddProfile: React.FC = () => {
       {status === 'loading' && <p>Loading...</p>}
       {status === 'failed' && <p>Error: {error}</p>}
     </div>
+    
   )
 }
 

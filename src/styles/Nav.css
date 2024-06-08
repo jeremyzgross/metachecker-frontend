@@ -1,24 +1,23 @@
-/* Navbar.css */
 html {
   font-family: 'roboto';
 }
 
 nav {
-  background-color: #240e87; /* Set navbar background color */
-  padding: 5px 20px; /* Add padding to navbar */
+  background-color: #240e87;
+  padding: 5px 40px;
 }
 
 ul {
-  list-style: none; /* Remove default list styles */
+  list-style: none;
   padding: 0; /* Remove default padding */
   margin: 0; /* Remove default margin */
-  display: flex; /* Use flexbox for layout */
+  display: flex;
 }
 
 li {
-  display: flex; /* Use flexbox for layout */
+  display: flex;
   align-items: center; /* Center items vertically */
-  margin-right: 15px; /* Add margin between navbar items */
+  margin-right: 15px; 
 }
 
 .welcome-image {

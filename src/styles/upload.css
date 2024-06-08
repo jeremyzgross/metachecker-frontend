@@ -32,14 +32,14 @@ html {
 }
 
 .upload-container input[type='submit'] {
-  background-color: #ff6347; /* Set button background color to red */
-  color: #fff; /* Set button text color */
+  background-color: #ff6347; 
+  color: #fff;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .upload-container input[type='submit']:hover {
-  background-color: #ff4838; /* Darken the background color on hover */
+  background-color: #ff4838; 
 }
 
 .upload-container p {
