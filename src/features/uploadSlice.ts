@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
+// qc results interface
 export interface QCResults {
   codec_name: boolean
   // profile: boolean
@@ -16,6 +17,7 @@ export interface QCResults {
   audio_bitrate: boolean
 }
 
+//metadata extract interface
 export interface ProbedMetadata {
   codec_name: string
   // profile: string
@@ -32,6 +34,7 @@ export interface ProbedMetadata {
   audio_bitrate: number
 }
 
+//profiles interface
 export interface videoProfileInterface {
   codec_name: string
   // profile: string
@@ -47,6 +50,8 @@ export interface videoProfileInterface {
   channel_layout: string
   audio_bitrate: string
 }
+
+//file upload interface
 export interface UploadState {
   file: File | null
   isLoading: boolean
@@ -56,12 +61,14 @@ export interface UploadState {
   videoProfileInterface: videoProfileInterface | null
 }
 
+//profile state interface
 export interface ProfileState {
   profiles: any[]
   loading: boolean
   error: string | null
 }
 
+//default upload state
 const initialUploadState: UploadState = {
   file: null,
   isLoading: false,
@@ -71,6 +78,7 @@ const initialUploadState: UploadState = {
   videoProfileInterface: null,
 }
 
+// default profile state
 const initialProfileState: ProfileState = {
   profiles: [],
   loading: false,

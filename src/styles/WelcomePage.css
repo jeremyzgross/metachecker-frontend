@@ -23,7 +23,7 @@ html {
 
 .form-container {
   width: 80%; /* Adjust the width of the form container */
-  max-width: 600px; /* Set a maximum width to maintain readability */
+  max-width: 600px;
   padding: 40px; /* Increase padding for more spacing */
   background-color: #240e87;
   border-radius: 10px;
@@ -38,7 +38,7 @@ html {
 }
 
 .form-container.register {
-  background-color: #e05118; /* Orange background color for register form */
+  background-color: #e05118; 
 }
 
 .form-container h1 {
@@ -58,7 +58,7 @@ html {
   margin-bottom: 15px; /* Add spacing between inputs */
   border: none;
   border-radius: 5px;
-  font-size: 16px; /* Increase font size for better readability */
+  font-size: 16px; 
 }
 
 .form-container button {

@@ -28,14 +28,14 @@ li {
 }
 
 button {
-  background-color: transparent; /* Set button background color to transparent */
-  color: #fff; /* Set button text color */
+  background-color: transparent; 
+  color: #fff; 
   border: none; /* Remove button border */
   cursor: pointer; /* Set cursor to pointer on hover */
-  font-size: 16px; /* Set font size */
-  font-weight: bold; /* Set font weight to bold */
+  font-size: 16px; 
+  font-weight: bold; 
 }
 
 button:hover {
-  color: rgba(255, 255, 255, 0.7); /* Change text color on hover */
+  color: rgba(255, 255, 255, 0.7); 
 }

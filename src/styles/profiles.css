@@ -3,8 +3,8 @@ html {
 }
 .profiles-container {
   padding: 20px;
-  background-color: #007bff; /* Blue background color */
-  color: #fff; /* White text color */
+  background-color: #007bff;
+  color: #fff; 
   border-radius: 10px;
   min-height: 100vh; /* Ensure the container extends to full page height */
 }

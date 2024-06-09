@@ -4,10 +4,8 @@ html {
 
 .upload-container {
   padding: 20px;
-  background-color: #240e87; /* Dark purple background color */
-  color: #fff; /* White text color */
-  /* border-radius: 10px; */
-  /* margin-top: 20px; */
+  background-color: #240e87; 
+  color: #fff;
 }
 
 .upload-container .top-buttons {
@@ -44,7 +42,7 @@ html {
 .upload-container input[type='submit'],
 .upload-container input[type='text'],
 .upload-container input[type='number'] {
-  width: 50%; /* Adjusted width for inputs and selects */
+  width: 50%; /* width for inputs and selects */
   padding: 10px;
   margin-bottom: 15px;
   border: none;

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, createAction, PayloadAction } from '@reduxjs/toolkit';
 
+//profile interface from database
 export interface ViewProfile {
   profile_name: string;
   codec_name: string | null;
@@ -28,6 +29,7 @@ interface ViewProfileState {
   error: string | null;
 }
 
+//default profile state
 const initialState: ViewProfileState = {
   data: {
     profile_name: '',

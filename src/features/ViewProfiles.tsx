@@ -21,15 +21,17 @@ const ViewProfiles: React.FC = () => {
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false)
   const [deleteMessage, setDeleteMessage] = useState<string | null>(null)
 
+  //get profiles API request
   useEffect(() => {
     if (user_id !== null) {
-      dispatch(getProfiles({ user_id }))
+      dispatch(getProfiles({ user_id })) //based on state of userid
     }
     return () => {
       dispatch(clearViewProfile())
     }
   }, [dispatch, user_id])
 
+  //handler for displaying profile
   const handleProfileChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedProfileId = Number(event.target.value)
     setSelectedProfile(selectedProfileId)
@@ -38,14 +40,18 @@ const ViewProfiles: React.FC = () => {
     }
   }
 
+  //handler for confirming deleting profile
   const handleDeleteConfirmation = () => {
     setShowConfirmation(true)
   }
 
+  //handler for cancel delete
   const handleDeleteCancel = () => {
     setShowConfirmation(false)
   }
 
+
+  //handler for deleting profile
   const handleProfileDelete = () => {
     setShowConfirmation(false)
     if (user_id !== null && selectedProfile !== null) {
@@ -64,7 +70,7 @@ const ViewProfiles: React.FC = () => {
   }
 
   const getFieldInfo = (
-    key: keyof ViewProfile
+    key: keyof ViewProfile //map to ViewProfile interface
   ): { label: string; unit: string } => {
     const propertyNamesMap: {
       [key in keyof ViewProfile]: { label: string; unit: string }
