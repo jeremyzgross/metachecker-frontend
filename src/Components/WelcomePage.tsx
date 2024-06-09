@@ -5,8 +5,10 @@ import videoEditorImage from '../Img/video-editor.png'
 import '../styles/WelcomePage.css'
 
 const WelcomePage: React.FC = () => {
+  //state if user is registering
   const [isRegistering, setIsRegistering] = useState(false)
 
+  //helper to indicated if a user is using login or register
   const toggleRegister = () => {
     setIsRegistering(!isRegistering)
   }
@@ -18,10 +20,17 @@ const WelcomePage: React.FC = () => {
         <h2>Welcome to MetaChecker!</h2>
         <p>
           MetaChecker analyzes your video's metadata for you so that they are
-          optimized for whatever platform you are delivering to
+          optimized for whatever platform you are delivering to.
+          <br />
+          <br />
+          For sample demo/demo for user/pass.
+          <br />
+          <br />
+          Otherwise please make a new accouint for custom profiles
         </p>
       </div>
 
+      {/* render depending on user login or register */}
       <div className={`form-container ${isRegistering ? 'register' : 'login'}`}>
         <h1>{isRegistering ? 'Register' : 'Login'}</h1>
         <p>Please {isRegistering ? 'register' : 'login'} to continue</p>

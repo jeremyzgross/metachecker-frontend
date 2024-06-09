@@ -11,28 +11,36 @@ import '../styles/results.css'
 
 const Results: React.FC = () => {
   const qcResults = useSelector((state: RootState) => state.upload.qcResults)
+
+  //sets state of metadata displayed in table
   const probedMetadata = useSelector(
     (state: RootState) => state.upload.probedMetadata
   )
+
+  //sets state of of which video profile the user is using
   const videoProfileInterface = useSelector(
     (state: RootState) => state.upload.videoProfileInterface
   )
+  //loading state
   const isLoading = useSelector((state: RootState) => state.upload.isLoading)
 
   if (isLoading) {
     return <p>Loading results...</p>
   }
 
+  //null by default
   if (!qcResults || !probedMetadata || !videoProfileInterface) {
     return null
   }
 
-  // Helper function to render checkmark or X
+  // helper function to render checkmark or X
   const renderCheckmarkOrX = (value: boolean) => {
     const style = { color: value ? 'green' : 'red' }
     const symbol = value ? '✓ PASS' : '✗ FAIL'
     return <span style={style}>{symbol}</span>
   }
+
+  //special case to convert bitrate units from bytes to killobytes
   const convertBitrateToKilobits = (bitrate: number): number => {
     return bitrate / 1000
   }
@@ -50,11 +58,13 @@ const Results: React.FC = () => {
           </tr>
         </thead>
         <tbody>
+          {/* map qc results from api to prefered names on display */}
           {Object.entries(qcResults).map(([key, value]) => (
             <tr key={key}>
               <td>{propertyNamesMap[key as keyof QCResults]}</td>
               <td>{renderCheckmarkOrX(value)}</td>
               <td>
+                {/* key of metadata extract to display on page with the exceptions below */}
                 {key in probedMetadata && (
                   <>
                     {key !== 'bitrate' &&
@@ -125,6 +135,7 @@ const Results: React.FC = () => {
                         key as keyof videoProfileInterface
                       ] === 'string' && (
                         <span>
+                          {/* ranges are stored as string arrays in databse. replace with range instead of array */}
                           {String(
                             videoProfileInterface[
                               key as keyof videoProfileInterface

@@ -1,33 +1,36 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 
+//Interface and types  used for add profiles object
 export interface VideoProfileFormData {
-  user_id: number| null
-  profile_name: string,
-  codec_name: string | null;
+  user_id: number | null
+  profile_name: string
+  codec_name: string | null
   // profile: string | null;
-  width: number | null;
-  height: number | null;
-  field_order: string | null;
-  r_frame_rate: string | null;
-  duration: number | null;
-  bitrate_min: number | null;
-  bitrate_max: number | null;
-  audio_codec_name: string | null;
-  sample_rate: number | null;
-  channels: number | null;
-  channel_layout: string | null;
-  audio_bitrate_min: number | null;
-  audio_bitrate_max: number | null;
-  bitrate: [number | null, number | null];
-  audio_bitrate: [number | null, number | null];
+  width: number | null
+  height: number | null
+  field_order: string | null
+  r_frame_rate: string | null
+  duration: number | null
+  bitrate_min: number | null
+  bitrate_max: number | null
+  audio_codec_name: string | null
+  sample_rate: number | null
+  channels: number | null
+  channel_layout: string | null
+  audio_bitrate_min: number | null
+  audio_bitrate_max: number | null
+  bitrate: [number | null, number | null]
+  audio_bitrate: [number | null, number | null]
 }
 
+//default state type
 interface VideoProfileState {
-  data: VideoProfileFormData;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
+  data: VideoProfileFormData
+  status: 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: string | null
 }
 
+//initial state of add profile
 const initialState: VideoProfileState = {
   data: {
     user_id: 0,
@@ -52,29 +55,33 @@ const initialState: VideoProfileState = {
   },
   status: 'idle',
   error: null,
-};
+}
 
+//async post api call to add profile
 export const addProfile = createAsyncThunk(
   'addProfile/addVideoProfileFormData',
   async (VideoFormDataToSend: VideoProfileFormData, thunkAPI) => {
     try {
-      const response = await fetch('https://metachecker-server.onrender.com/api/addvideoprofile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(VideoFormDataToSend),
-      });
+      const response = await fetch(
+        'https://metachecker-server.onrender.com/api/addvideoprofile',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(VideoFormDataToSend),
+        }
+      )
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Network response was not ok')
       }
-      const result = await response.json();
-      return result;
+      const result = await response.json()
+      return result
     } catch (error) {
-      return thunkAPI.rejectWithValue('Error on thunk adding profile');
+      return thunkAPI.rejectWithValue('Error on thunk adding profile')
     }
   }
-);
+)
 
 export const addProfileSlice = createSlice({
   name: 'addProfile',
@@ -83,7 +90,7 @@ export const addProfileSlice = createSlice({
     emptyVideoProfileFormData(state) {
       state.data = {
         user_id: 0,
-         profile_name: '',
+        profile_name: '',
         codec_name: null,
         // profile: null,
         width: null,
@@ -101,28 +108,28 @@ export const addProfileSlice = createSlice({
         audio_bitrate_max: null,
         bitrate: [null, null],
         audio_bitrate: [null, null],
-      };
-      state.status = 'idle';
-      state.error = null;
+      }
+      state.status = 'idle'
+      state.error = null
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(addProfile.pending, (state) => {
-        state.status = 'loading';
-        state.error = null;
+        state.status = 'loading'
+        state.error = null
       })
       .addCase(addProfile.fulfilled, (state, action: PayloadAction<any>) => {
-        state.status = 'succeeded';
-        state.error = null;
+        state.status = 'succeeded'
+        state.error = null
       })
       .addCase(addProfile.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload as string;
-      });
+        state.status = 'failed'
+        state.error = action.payload as string
+      })
   },
-});
+})
 
-export const { emptyVideoProfileFormData } = addProfileSlice.actions;
+export const { emptyVideoProfileFormData } = addProfileSlice.actions
 
-export default addProfileSlice.reducer;
+export default addProfileSlice.reducer

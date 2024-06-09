@@ -8,14 +8,18 @@ import Navbar from '../Components/Navbar'
 
 const AddProfile: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
+
+  //state of loading status and errors
   const { status, error } = useSelector((state: RootState) => state.addProfile)
+
+  //getting current user_id state for add profile api call
   const { user_id } = useSelector((state: RootState) => state.login)
 
+  //form data default state. uses videoProfileFormData for type of forms
   const [formData, setFormData] = useState<VideoProfileFormData>({
     user_id: null,
     profile_name: '',
     codec_name: 'h264',
-    // profile: 'main',
     width: 1920,
     height: 1080,
     field_order: 'progressive',
@@ -33,28 +37,34 @@ const AddProfile: React.FC = () => {
     audio_bitrate: [128, 192],
   })
 
+  //profile added messege
   const [successMessage, setSuccessMessage] = useState<string | null>(null)
 
+  //userid from current state is attached to the form submit
   useEffect(() => {
     if (user_id) {
       setFormData((prevData) => ({ ...prevData, user_id }))
     }
   }, [user_id])
 
+  //handler function for user input
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target
     setFormData({ ...formData, [name]: value })
   }
-
+  //submit handler
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const formDataToSend: VideoProfileFormData = {
       ...formData,
+      //special cases for range inputs. Database recieves as array
       bitrate: [formData.bitrate_min, formData.bitrate_max],
       audio_bitrate: [formData.audio_bitrate_min, formData.audio_bitrate_max],
     }
+
+    //add profile action
     dispatch(addProfile(formDataToSend)).then((result) => {
       if (addProfile.fulfilled.match(result)) {
         setSuccessMessage(
@@ -85,7 +95,7 @@ const AddProfile: React.FC = () => {
     })
   }
 
-  // Options for audio codec based on selected video codec
+  // options for audio codec based on selected video codec
   const audioCodecOptions =
     formData.codec_name === 'h264'
       ? [
@@ -183,16 +193,6 @@ const AddProfile: React.FC = () => {
             </select>
           </label>
           <br />
-          {/* <label>
-          Profile:
-          <input
-            type="text"
-            name="profile"
-            value={formData.profile ?? ''}
-            onChange={handleInputChange}
-          />
-        </label> */}
-          {/* <br /> */}
           <label>
             Width:
             <input

@@ -8,19 +8,28 @@ import '../styles/upload.css'
 const Upload: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
 
+  //uses state of user_id for api post request
   const { user_id } = useSelector((state: RootState) => state.login)
+
+  //load profiles from api get profiles request
   const {
     profiles,
     loading: profilesLoading,
     error,
   } = useSelector((state: RootState) => state.profiles)
+
+  //loading state
   const { isLoading: uploadLoading } = useSelector(
     (state: RootState) => state.upload
   )
 
+  //state of video attached. Either null or a file
   const [video, setVideo] = useState<File | null>(null)
+
+  //selected profile state. Either null or a profile id number
   const [selectedProfile, setSelectedProfile] = useState<number | null>(null)
 
+  //on load, gets profiles baed on user_id and resets any qc results from previous sessions
   useEffect(() => {
     if (user_id !== null) {
       dispatch(getProfiles({ user_id }))
@@ -28,6 +37,7 @@ const Upload: React.FC = () => {
     }
   }, [dispatch, user_id])
 
+  //handler for uploading file
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0]
     if (selectedFile) {
@@ -38,10 +48,12 @@ const Upload: React.FC = () => {
     }
   }
 
+  //handler for profile selected
   const handleProfileChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedProfile(Number(event.target.value))
   }
 
+  //submit handler for upload request
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (video && user_id !== null && selectedProfile !== null) {

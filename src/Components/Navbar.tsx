@@ -12,19 +12,22 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate()
   const { first_name } = useSelector((state: RootState) => state.login)
 
+  //navigate to home after logout aciton is dispatched
   const handleLogout = () => {
     dispatch(logout())
     navigate('/')
   }
-
+  //navigate to users profiles form submit
   const handleProfilesClick = () => {
     navigate('/Profiles')
   }
 
+  //navigate to users existing profiles
   const handleViewProfilesClick = () => {
     navigate('/viewprofiles')
   }
 
+  //if the login state is empty, forward to 404
   const isLoggedIn = !!first_name // Check if first_name is truthy
 
   if (!isLoggedIn) {
