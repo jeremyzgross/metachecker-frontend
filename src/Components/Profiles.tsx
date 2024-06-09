@@ -17,7 +17,7 @@ const Profiles: React.FC = () => {
     <>
       <Navbar />
       <div className="add-profile-container">
-        <AddProfile />
+        {/* <AddProfile /> */}
       </div>
     </>
   )

@@ -4,6 +4,7 @@ import { RootState, AppDispatch } from '../App/store'
 import { addProfile } from './AddProfileSlice'
 import { VideoProfileFormData } from './AddProfileSlice'
 import '../styles/addProfiles.css'
+import Navbar from '../Components/Navbar'
 
 const AddProfile: React.FC = () => {
   const dispatch: AppDispatch = useDispatch()
@@ -154,33 +155,35 @@ const AddProfile: React.FC = () => {
         ]
 
   return (
-    <div className="upload-container">
-      <h1> Add New Profile </h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Profile Name:
-          <input
-            type="text"
-            name="profile_name"
-            value={formData.profile_name ?? ''}
-            onChange={handleInputChange}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Codec Name:
-          <select
-            name="codec_name"
-            value={formData.codec_name ?? ''}
-            onChange={handleInputChange}
-          >
-            <option value="h264">h264</option>
-            <option value="prores">prores</option>
-          </select>
-        </label>
-        <br />
-        {/* <label>
+    <>
+      <Navbar />
+      <div className="upload-container">
+        <h1> Add New Profile </h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Profile Name:
+            <input
+              type="text"
+              name="profile_name"
+              value={formData.profile_name ?? ''}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Codec Name:
+            <select
+              name="codec_name"
+              value={formData.codec_name ?? ''}
+              onChange={handleInputChange}
+            >
+              <option value="h264">h264</option>
+              <option value="prores">prores</option>
+            </select>
+          </label>
+          <br />
+          {/* <label>
           Profile:
           <input
             type="text"
@@ -189,174 +192,174 @@ const AddProfile: React.FC = () => {
             onChange={handleInputChange}
           />
         </label> */}
-        {/* <br /> */}
-        <label>
-          Width:
+          {/* <br /> */}
+          <label>
+            Width:
+            <input
+              type="number"
+              name="width"
+              value={formData.width ?? ''}
+              onChange={handleInputChange}
+            />
+            px{' '}
+          </label>
+          <br />
+          <label>
+            Height:
+            <input
+              type="number"
+              name="height"
+              value={formData.height ?? ''}
+              onChange={handleInputChange}
+            />
+            px{' '}
+          </label>
+          <br />
+          <label>
+            Field Order:
+            <select
+              name="field_order"
+              value={formData.field_order ?? ''}
+              onChange={handleInputChange}
+            >
+              <option value="progressive">Progressive</option>
+              <option value="tb">Top Field First</option>
+            </select>
+          </label>
+          <br />
+          <label>
+            Frame Rate:
+            <input
+              type="text"
+              name="r_frame_rate"
+              value={formData.r_frame_rate ?? ''}
+              onChange={handleInputChange}
+            />
+            fps
+          </label>
+          <br />
+          <label>
+            Duration:
+            <input
+              type="number"
+              name="duration"
+              value={formData.duration ?? ''}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Video Bitrate (Min):
+            <input
+              type="number"
+              name="bitrate_min"
+              value={formData.bitrate_min ?? ''}
+              onChange={handleInputChange}
+            />
+            Kbps
+          </label>
+          <br />
+          <label>
+            Video Bitrate (Max):
+            <input
+              type="number"
+              name="bitrate_max"
+              value={formData.bitrate_max ?? ''}
+              onChange={handleInputChange}
+            />
+            Kbps
+          </label>
+          <br />
+          <label>
+            Audio Codec Name:
+            <select
+              name="audio_codec_name"
+              value={formData.audio_codec_name ?? ''}
+              onChange={handleInputChange}
+            >
+              {audioCodecOptions.map((option) => (
+                <option key={option.shortName} value={option.shortName}>
+                  {option.longName}
+                </option>
+              ))}
+            </select>
+          </label>
+          <br />
+          <label>
+            Sample Rate:
+            <input
+              type="number"
+              name="sample_rate"
+              value={formData.sample_rate ?? ''}
+              onChange={handleInputChange}
+            />
+            Hz
+          </label>
+          <br />
+          <label>
+            Channels:
+            <input
+              type="number"
+              name="channels"
+              value={formData.channels ?? ''}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Channel Layout:
+            <input
+              type="text"
+              name="channel_layout"
+              value={formData.channel_layout ?? ''}
+              onChange={handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Audio Bitrate (Min):
+            <input
+              type="number"
+              name="audio_bitrate_min"
+              value={formData.audio_bitrate_min ?? ''}
+              onChange={handleInputChange}
+            />
+            Kbps
+          </label>
+          <br />
+          <label>
+            Audio Bitrate (Max):
+            <input
+              type="number"
+              name="audio_bitrate_max"
+              value={formData.audio_bitrate_max ?? ''}
+              onChange={handleInputChange}
+            />
+            Kbps
+          </label>
+          <br />
           <input
-            type="number"
-            name="width"
-            value={formData.width ?? ''}
-            onChange={handleInputChange}
+            type="submit"
+            value="Add Profile"
+            style={{
+              backgroundColor: '#32bc2b',
+              color: '#fff',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s',
+              border: 'none',
+              borderRadius: '5px',
+              fontSize: '16px',
+              padding: '10px',
+              width: 'auto',
+              marginBottom: '15px',
+            }}
           />
-          px{' '}
-        </label>
-        <br />
-        <label>
-          Height:
-          <input
-            type="number"
-            name="height"
-            value={formData.height ?? ''}
-            onChange={handleInputChange}
-          />
-          px{' '}
-        </label>
-        <br />
-        <label>
-          Field Order:
-          <select
-            name="field_order"
-            value={formData.field_order ?? ''}
-            onChange={handleInputChange}
-          >
-            <option value="progressive">Progressive</option>
-            <option value="tb">Top Field First</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Frame Rate:
-          <input
-            type="text"
-            name="r_frame_rate"
-            value={formData.r_frame_rate ?? ''}
-            onChange={handleInputChange}
-          />
-          fps
-        </label>
-        <br />
-        <label>
-          Duration:
-          <input
-            type="number"
-            name="duration"
-            value={formData.duration ?? ''}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Video Bitrate (Min):
-          <input
-            type="number"
-            name="bitrate_min"
-            value={formData.bitrate_min ?? ''}
-            onChange={handleInputChange}
-          />
-          Kbps
-        </label>
-        <br />
-        <label>
-          Video Bitrate (Max):
-          <input
-            type="number"
-            name="bitrate_max"
-            value={formData.bitrate_max ?? ''}
-            onChange={handleInputChange}
-          />
-          Kbps
-        </label>
-        <br />
-        <label>
-          Audio Codec Name:
-          <select
-            name="audio_codec_name"
-            value={formData.audio_codec_name ?? ''}
-            onChange={handleInputChange}
-          >
-            {audioCodecOptions.map((option) => (
-              <option key={option.shortName} value={option.shortName}>
-                {option.longName}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <label>
-          Sample Rate:
-          <input
-            type="number"
-            name="sample_rate"
-            value={formData.sample_rate ?? ''}
-            onChange={handleInputChange}
-          />
-          Hz
-        </label>
-        <br />
-        <label>
-          Channels:
-          <input
-            type="number"
-            name="channels"
-            value={formData.channels ?? ''}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Channel Layout:
-          <input
-            type="text"
-            name="channel_layout"
-            value={formData.channel_layout ?? ''}
-            onChange={handleInputChange}
-          />
-        </label>
-        <br />
-        <label>
-          Audio Bitrate (Min):
-          <input
-            type="number"
-            name="audio_bitrate_min"
-            value={formData.audio_bitrate_min ?? ''}
-            onChange={handleInputChange}
-          />
-          Kbps
-        </label>
-        <br />
-        <label>
-          Audio Bitrate (Max):
-          <input
-            type="number"
-            name="audio_bitrate_max"
-            value={formData.audio_bitrate_max ?? ''}
-            onChange={handleInputChange}
-          />
-          Kbps
-        </label>
-        <br />
-        <input
-          type="submit"
-          value="Add Profile"
-          style={{
-            backgroundColor: '#32bc2b',
-            color: '#fff',
-            cursor: 'pointer',
-            transition: 'background-color 0.3s',
-            border: 'none',
-            borderRadius: '5px',
-            fontSize: '16px',
-            padding: '10px',
-            width: 'auto',
-            marginBottom: '15px',
-          }}
-        />
-      </form>
-      {successMessage && <p>{successMessage}</p>}
-      {status === 'loading' && <p>Loading...</p>}
-      {status === 'failed' && <p>Error: {error}</p>}
-    </div>
-    
+        </form>
+        {successMessage && <p>{successMessage}</p>}
+        {status === 'loading' && <p>Loading...</p>}
+        {status === 'failed' && <p>Error: {error}</p>}
+      </div>
+    </>
   )
 }
 
