@@ -224,6 +224,7 @@ const AddProfile: React.FC = () => {
             >
               <option value="progressive">Progressive</option>
               <option value="tb">Top Field First</option>
+              <option value="unknown">unknown</option>
             </select>
           </label>
           <br />
