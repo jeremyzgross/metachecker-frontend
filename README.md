@@ -1,3 +1,9 @@
+**#LINK TO BACKEND NODE.JS REPO:
+**
+https://github.com/jeremyzgross/metachecker-server
+
+Please clone seperately
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
