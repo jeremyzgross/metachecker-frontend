@@ -1,5 +1,4 @@
-**LINK TO BACKEND NODE.JS REPO:
-**
+# LINK TO BACKEND NODE.JS SERVER:
 https://github.com/jeremyzgross/metachecker-server
 
 Please clone seperately
